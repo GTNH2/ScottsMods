@@ -23,9 +23,9 @@ public class SaplingParcel extends Item
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemStack, EntityPlayer player, List information, boolean unused)
     {
-        //noinspection unchecked
         information.add(StatCollector.translateToLocal(String.format("%s%s", TheMod.getResourcePrefix(), "parcel.tooltip")));
     }
 

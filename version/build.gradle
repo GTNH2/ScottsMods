@@ -1,9 +1,0 @@
-rootProject.version = "$version_mc-$version_major.$version_series.$version_revision"
-rootProject.ext.version_mc = version_mc
-rootProject.ext.version_forge = version_forge
-rootProject.ext.version_kore = "$version_mc-$version_kore"
-rootProject.ext.version_chisel = version_chisel
-rootProject.ext.version_forestry = version_forestry
-rootProject.ext.version_storagedrawers = version_storagedrawers
-
-apply from: "https://raw.githubusercontent.com/ScottKillen/Snippets/master/gradle/version.gradle"

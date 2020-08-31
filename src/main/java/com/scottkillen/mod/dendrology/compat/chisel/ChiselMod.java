@@ -96,12 +96,8 @@ public final class ChiselMod extends Integrator
     {
         if (Loader.isModLoaded(MOD_ID)&& Settings.INSTANCE.integrateChisel())
         {
-            switch (modState)
-            {
-                case PREINITIALIZED:
-                    preInit();
-                    break;
-                default:
+            if (modState == ModState.PREINITIALIZED) {
+                preInit();
             }
         }
     }

@@ -195,14 +195,14 @@ public final class ModBlocks
     private static void registerLogBlock(Block block, String name, ImmutableList<String> subblockNames)
     {
         GameRegistry.registerBlock(block, ModLogItem.class, name, block,
-                subblockNames.toArray(new String[subblockNames.size()]));
+                subblockNames.toArray(new String[0]));
         Blocks.fire.setFireInfo(block, DEFAULT_LOG_FIRE_ENCOURAGEMENT, DEFAULT_LOG_FLAMMABILITY);
     }
 
     private static void registerSaplingBlock(Block block, String name, List<String> subblockNames)
     {
         GameRegistry.registerBlock(block, ModSaplingItem.class, name, block,
-                subblockNames.toArray(new String[subblockNames.size()]));
+                subblockNames.toArray(new String[0]));
     }
 
     private static void registerSlabBlock(Block block, String name, SlabBlock singleSlab, SlabBlock doubleSlab,
@@ -220,7 +220,7 @@ public final class ModBlocks
     private static void registerWoodBlock(Block block, String name, ImmutableList<String> subblockNames)
     {
         GameRegistry.registerBlock(block, ModWoodItem.class, name, block,
-                subblockNames.toArray(new String[subblockNames.size()]));
+                subblockNames.toArray(new String[0]));
         Blocks.fire.setFireInfo(block, DEFAULT_PLANKS_FIRE_ENCOURAGEMENT, DEFAULT_PLANKS_FLAMMABILITY);
     }
 
