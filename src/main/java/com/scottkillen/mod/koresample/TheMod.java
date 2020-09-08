@@ -21,6 +21,5 @@ public final class TheMod
     @Instance(MOD_ID)
     public static TheMod INSTANCE;
 
-    @SuppressWarnings("unused")
     public static String resourcePrefix() { return RESOURCE_PREFIX; }
 }

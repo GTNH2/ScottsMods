@@ -7,9 +7,15 @@ import java.util.Random;
 
 public class KiparisTree extends AbstractTree
 {
-    public KiparisTree(boolean fromSapling) { super(fromSapling); }
+    public KiparisTree(boolean fromSapling)
+    {
+        super(fromSapling);
+    }
 
-    public KiparisTree() { this(true); }
+    public KiparisTree()
+    {
+        this(true);
+    }
 
     @Override
     protected boolean canBeReplacedByLog(World world, int x, int y, int z)

@@ -1,7 +1,6 @@
 package com.scottkillen.mod.dendrology;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.dendrology.block.ModBlocks;
 import com.scottkillen.mod.dendrology.compat.chisel.ChiselMod;
@@ -37,7 +36,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
+
 import java.util.List;
+import java.util.Optional;
 
 @SuppressWarnings({
         "AnonymousInnerClass",
@@ -46,13 +47,23 @@ import java.util.List;
         "StaticVariableMayNotBeInitialized",
         "NonConstantFieldWithUpperCaseName"
 })
-@Mod(modid = TheMod.MOD_ID, name = TheMod.MOD_NAME, version = TheMod.MOD_VERSION, useMetadata = true, guiFactory = TheMod.MOD_GUI_FACTORY)
+@Mod(modid = TheMod.MOD_ID,
+        name = TheMod.MOD_NAME,
+        version = TheMod.MOD_VERSION,
+        useMetadata = true,
+        guiFactory = TheMod.MOD_GUI_FACTORY,
+        dependencies = TheMod.MOD_DEPENDENCIES)
 public final class TheMod
 {
     public static final String MOD_ID = "dendrology";
     static final String MOD_NAME = "Ancient Trees";
     static final String MOD_VERSION = "${mod_version}";
     static final String MOD_GUI_FACTORY = "com.scottkillen.mod.dendrology.config.client.ModGuiFactory";
+    static final String MOD_DEPENDENCIES = "after:chisel;" +
+                                           "after:Forestry;" +
+                                           "after:StorageDrawers;" +
+                                           "after:GardenCore;" +
+                                           "after:MineFactoryReloaded;";
     private static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ':';
     @SuppressWarnings("PublicField")
     @Instance(MOD_ID)
@@ -74,7 +85,7 @@ public final class TheMod
         public Item getTabIconItem() { return null; }
     };
     private final List<Integrates> integrators = Lists.newArrayList();
-    private Optional<ConfigEventHandler> configEventHandler = Optional.absent();
+    private Optional<ConfigEventHandler> configEventHandler = Optional.empty();
 
     public static String getResourcePrefix() { return RESOURCE_PREFIX; }
 
