@@ -37,6 +37,8 @@ public enum Settings implements ConfigSyncable
     private boolean doHensDropFeathers = true;
     private boolean doPlantGrowable = true;
     private boolean doEndermenDrops = true;
+    private boolean clayVeinEnable = true;
+    private boolean doLimitSpawns = true;
 
     private static int get(Configuration config, String settingName, String category, int defaultValue,
                            int minumumValue, int maximumValue)
@@ -67,25 +69,29 @@ public enum Settings implements ConfigSyncable
     public void syncConfig(Configuration config)
     {
         chickFeatherQuantity = get(config, "chickFeatherQuantity", CATEGORY_FEATHER_DROP, chickFeatherQuantity, 1, 10);
-        chickFeatherRarity =
-                get(config, "chickFeatherRarity", CATEGORY_FEATHER_DROP, chickFeatherRarity, 6000, Integer.MAX_VALUE);
+        chickFeatherRarity = get(config, "chickFeatherRarity", CATEGORY_FEATHER_DROP, chickFeatherRarity, 6000, Integer.MAX_VALUE);
         doChicksDropFeathers = get(config, "doChicksDropFeathers", CATEGORY_FEATHER_DROP, doChicksDropFeathers);
         doHensDropFeathers = get(config, "doHensDropFeathers", CATEGORY_FEATHER_DROP, doHensDropFeathers);
         henFeatherQuantity = get(config, "henFeatherQuantity", CATEGORY_FEATHER_DROP, henFeatherQuantity, 1, 10);
-        henFeatherRarity =
-                get(config, "henFeatherRarity", CATEGORY_FEATHER_DROP, henFeatherRarity, 6000, Integer.MAX_VALUE);
+        henFeatherRarity = get(config, "henFeatherRarity", CATEGORY_FEATHER_DROP, henFeatherRarity, 6000, Integer.MAX_VALUE);
 
         doEndermenDrops = get(config, "doEndermenDrops", CATEGORY_ENDERMEN, doEndermenDrops);
         doPlantGrowable = get(config, "doPlantGrowable", CATEGORY_PLANTING, doPlantGrowable);
 
+        clayVeinEnable = get(config, "clayVeinEnable", CATEGORY_CLAY_SPAWN, clayVeinEnable);
         clayVeinQuantity = get(config, "clayVeinQuantity", CATEGORY_CLAY_SPAWN, clayVeinQuantity, 0, 255);
         clayVeinSizeMax = get(config, "clayVeinSizeMax", CATEGORY_CLAY_SPAWN, clayVeinSizeMax, 1, 255);
         clayVeinSizeMin = get(config, "clayVeinSizeMin", CATEGORY_CLAY_SPAWN, clayVeinSizeMin, 0, clayVeinSizeMax);
         claySpawnYMax = get(config, "claySpawnYMax", CATEGORY_CLAY_SPAWN, claySpawnYMax, 1, 255);
         claySpawnYMin = get(config, "claySpawnYMin", CATEGORY_CLAY_SPAWN, claySpawnYMin, 1, claySpawnYMax);
 
+        doLimitSpawns = get(config, "doLimitSpawns", CATEGORY_SPAWN_CONTROL, doLimitSpawns);
         batSpawnPercent = get(config, "batSpawnPercent", CATEGORY_SPAWN_CONTROL, batSpawnPercent, 0, 100);
         squidSpawnPercent = get(config, "squidSpawnPercent", CATEGORY_SPAWN_CONTROL, squidSpawnPercent, 0, 100);
+    }
+
+    public boolean doLimitSpawns() {
+        return doLimitSpawns;
     }
 
     public int chickFeatherQuantity() { return chickFeatherQuantity; }
@@ -117,6 +123,10 @@ public enum Settings implements ConfigSyncable
     public int batSpawnPercent() { return batSpawnPercent; }
 
     public int squidSpawnPercent() { return squidSpawnPercent; }
+
+    public boolean isClayVeinEnable() {
+        return clayVeinEnable;
+    }
 
     @Override
     public String toString()

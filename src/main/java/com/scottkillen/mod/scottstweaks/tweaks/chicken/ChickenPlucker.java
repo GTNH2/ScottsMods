@@ -13,7 +13,11 @@ public final class ChickenPlucker extends ForgeEventListener
     @SubscribeEvent
     public void onLivingUpdate(LivingUpdateEvent event)
     {
-        if (event.entity.worldObj.isRemote) return;
+        if (event.entity.worldObj.isRemote)
+            return;
+
+        if (!(Settings.INSTANCE.doChicksDropFeathers() && Settings.INSTANCE.doHensDropFeathers()))
+            return;
 
         if (event.entity instanceof EntityChicken)
         {
@@ -24,14 +28,12 @@ public final class ChickenPlucker extends ForgeEventListener
     private static void pluckChicken(EntityChicken chicken)
     {
         final Settings settings = Settings.INSTANCE;
-        final boolean doFeatherDrop =
-                chicken.isChild() ? settings.doChicksDropFeathers() : settings.doHensDropFeathers();
+        final boolean doFeatherDrop = chicken.isChild() ? settings.doChicksDropFeathers() : settings.doHensDropFeathers();
         final int dropRarity = chicken.isChild() ? settings.chickFeatherRarity() : settings.henFeatherRarity();
 
         if (doFeatherDrop && dropRarity > 0 && chicken.getRNG().nextInt(dropRarity) == 0)
         {
-            final int dropQuantity =
-                    chicken.isChild() ? settings.chickFeatherQuantity() : settings.henFeatherQuantity();
+            final int dropQuantity = chicken.isChild() ? settings.chickFeatherQuantity() : settings.henFeatherQuantity();
             chicken.dropItem(Items.feather, dropQuantity);
         }
     }

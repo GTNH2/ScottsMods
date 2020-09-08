@@ -35,7 +35,8 @@ public class ClayGenerator implements IWorldGenerator
 
     public void install()
     {
-        GameRegistry.registerWorldGenerator(this, 10);
+        if (Settings.INSTANCE.isClayVeinEnable())
+            GameRegistry.registerWorldGenerator(this, 10);
     }
 
     @Override
