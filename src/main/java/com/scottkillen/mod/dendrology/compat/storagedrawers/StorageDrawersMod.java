@@ -10,6 +10,7 @@ import cpw.mods.fml.common.Optional.Method;
 public final class StorageDrawersMod extends Integrator
 {
     static final String MOD_ID = "StorageDrawers";
+    static final String MOD_ID_DREAMCRAFT = "dreamcraft";
     private static final String MOD_NAME = "Storage Drawers";
     private SDBlocks blocks = null;
     private SDRefinedRelocationBlocks rrBlocks = null;
@@ -49,7 +50,9 @@ public final class StorageDrawersMod extends Integrator
     {
         rrBlocks = new SDRefinedRelocationBlocks();
         rrBlocks.setup(blocks);
-        blocks.writeRecipes();
+
+        if (!Loader.isModLoaded(MOD_ID_DREAMCRAFT))
+            blocks.writeRecipes();
     }
 
     @Method(modid = MOD_ID)

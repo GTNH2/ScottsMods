@@ -1,7 +1,6 @@
 package com.scottkillen.mod.koresample.config;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
 import com.scottkillen.mod.koresample.common.util.log.Logger;
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -9,10 +8,12 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public final class ConfigEventHandler
@@ -40,7 +41,7 @@ public final class ConfigEventHandler
             configuration = new Configuration(configFile, configVersion);
         } else
         {
-            oldConfig = Optional.absent();
+            oldConfig = Optional.empty();
             configuration = localConfiguration;
         }
 
@@ -103,7 +104,7 @@ public final class ConfigEventHandler
 
             final Configuration newConfig = new Configuration(configFile, configVersion);
             final Set<String> categoryNames = configuration.getCategoryNames();
-            newConfig.copyCategoryProps(configuration, categoryNames.toArray(new String[categoryNames.size()]));
+            newConfig.copyCategoryProps(configuration, categoryNames.toArray(new String[0]));
             sync.syncConfig(newConfig);
             newConfig.save();
         }
@@ -129,16 +130,17 @@ public final class ConfigEventHandler
 
     void syncConfig()
     {
-        syncConfig(true, Optional.<Configuration>absent());
+        syncConfig(true, Optional.empty());
     }
 
     private void syncConfig(boolean doLoad, Optional<Configuration> oldConfig)
     {
-        if (doLoad) loadConfig();
+        if (doLoad)
+            loadConfig();
 
         sync.syncConfig(configuration);
 
-        if (oldConfig.isPresent()) sync.convertOldConfig(oldConfig.get());
+        oldConfig.ifPresent(sync::convertOldConfig);
 
         saveConfig();
     }
@@ -146,8 +148,13 @@ public final class ConfigEventHandler
     @Override
     public String toString()
     {
-        return Objects.toStringHelper(this).add("configFile", configFile).add("sync", sync)
-                .add("configuration", configuration).add("configVersion", configVersion).add("modID", modID)
-                .add("logger", logger).toString();
+        return Objects.toStringHelper(this)
+                    .add("configFile", configFile)
+                    .add("sync", sync)
+                    .add("configuration", configuration)
+                    .add("configVersion", configVersion)
+                    .add("modID", modID)
+                    .add("logger", logger)
+                .toString();
     }
 }

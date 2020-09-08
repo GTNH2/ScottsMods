@@ -57,9 +57,9 @@ public enum OverworldTreeSpecies
     CEDRUM(NO_COLOR, new CedrumTree(), new CedrumTree(false)),
     CERASU(CERASU_COLOR, new CerasuTree(), new CerasuTree(false)),
     DELNAS(NO_COLOR, new DelnasTree(), new DelnasTree(false)),
-    EWCALY(NO_COLOR, new EwcalyTree(), new EwcalyTree(false), PotionHelper.sugarEffect),
+    EWCALY(NO_COLOR, new EwcalyTree(), new EwcalyTree(false), PotionHelperFix.SugarPotionEffect),
     HEKUR(BASIC_COLOR, new HekurTree(), new HekurTree(false)),
-    KIPARIS(NO_COLOR, new KiparisTree(), new KiparisTree(false), PotionHelper.spiderEyeEffect),
+    KIPARIS(NO_COLOR, new KiparisTree(), new KiparisTree(false), PotionHelperFix.SpiderEyePotionEffect),
     KULIST(KULIST_COLOR, new KulistTree(), new KulistTree(false)),
     LATA(BASIC_COLOR, new LataTree(), new LataTree(false)),
     NUCIS(BASIC_COLOR, new NucisTree(), new NucisTree(false)),
@@ -320,5 +320,10 @@ public enum OverworldTreeSpecies
         CERASU_COLOR,
         KULIST_COLOR,
         NO_COLOR
+    }
+
+    private static class PotionHelperFix {
+        private static final String SugarPotionEffect = "-0+1-2-3&4-4+13";
+        private static final String SpiderEyePotionEffect = "-0-1+2-3&4-4+13";
     }
 }

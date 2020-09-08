@@ -15,7 +15,11 @@ public final class SpawnGovernor extends ForgeEventListener
     @SubscribeEvent
     public void onCheckSpawn(CheckSpawn event)
     {
-        if (event.entity.worldObj.isRemote) return;
+        if (event.entity.worldObj.isRemote)
+            return;
+
+        if (!Settings.INSTANCE.doLimitSpawns())
+            return;
 
         if (event.entity instanceof EntityBat || event.entity instanceof EntitySquid)
         {

@@ -51,7 +51,8 @@ public abstract class AbstractTree extends WorldGenAbstractTree
     protected boolean hasRoomToGrow(World world, int x, int y, int z, int height)
     {
         for (int y1 = y; y1 <= y + 1 + height; ++y1)
-            if (!isReplaceable(world, x, y1, z)) return false;
+            if (!isReplaceable(world, x, y1, z))
+                return false;
 
         return true;
     }

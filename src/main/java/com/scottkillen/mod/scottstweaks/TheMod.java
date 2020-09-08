@@ -1,7 +1,6 @@
 package com.scottkillen.mod.scottstweaks;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.scottkillen.mod.koresample.compat.Integrates;
 import com.scottkillen.mod.koresample.config.ConfigEventHandler;
@@ -18,7 +17,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+
 import java.util.List;
+import java.util.Optional;
 
 @SuppressWarnings({
         "StaticNonFinalField", "WeakerAccess", "StaticVariableMayNotBeInitialized", "NonConstantFieldWithUpperCaseName"
@@ -33,7 +34,7 @@ public class TheMod
     @Instance(MOD_ID)
     public static TheMod INSTANCE;
     private final List<Integrates> integrators = Lists.newArrayList();
-    private Optional<ConfigEventHandler> configEventHandler = Optional.absent();
+    private Optional<ConfigEventHandler> configEventHandler = Optional.empty();
 
     public Configuration configuration()
     {
