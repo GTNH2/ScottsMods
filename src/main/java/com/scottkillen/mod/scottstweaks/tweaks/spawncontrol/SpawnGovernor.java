@@ -18,7 +18,7 @@ public final class SpawnGovernor extends ForgeEventListener
         if (event.entity.worldObj.isRemote)
             return;
 
-        if (Settings.INSTANCE.doLimitSpawns())
+        if (!Settings.INSTANCE.doLimitSpawns())
             return;
 
         if (event.entity instanceof EntityBat || event.entity instanceof EntitySquid)
